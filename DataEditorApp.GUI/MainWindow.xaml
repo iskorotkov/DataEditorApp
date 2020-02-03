@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <TabControl x:Name="tabControl">
         <TabItem x:Name="AddTab" Header="Add">
-            <Grid Background="#FFE5E5E5"/>
+            <Frame x:Name="AddFrame" Content="" NavigationUIVisibility="Hidden" Source="/AddPage.xaml"/>
         </TabItem>
         <TabItem x:Name="ViewTab" Header="View">
             <Grid Background="#FFE5E5E5"/>
