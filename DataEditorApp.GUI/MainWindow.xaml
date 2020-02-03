@@ -6,7 +6,18 @@
         xmlns:local="clr-namespace:DataEditorApp.GUI"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+    <TabControl x:Name="tabControl">
+        <TabItem x:Name="AddTab" Header="Add">
+            <Grid Background="#FFE5E5E5"/>
+        </TabItem>
+        <TabItem x:Name="ViewTab" Header="View">
+            <Grid Background="#FFE5E5E5"/>
+        </TabItem>
+        <TabItem x:Name="EditTab" Header="Edit">
+            <Grid Background="#FFE5E5E5"/>
+        </TabItem>
+        <TabItem x:Name="DeleteTab" Header="Delete">
+            <Grid Background="#FFE5E5E5"/>
+        </TabItem>
+    </TabControl>
 </Window>
