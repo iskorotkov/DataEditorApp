@@ -4,12 +4,23 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DataEditorApp.GUI"
+      xmlns:sys="clr-namespace:System;assembly=System.Runtime"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddPage">
+      Title="AddPage" Background="White">
 
-    <Grid Background="#FFE5E5E5">
-        <Label x:Name="label" Content="Label"/>
-
-    </Grid>
+    <ScrollViewer>
+        <StackPanel Margin="8,8,8,8">
+            <GroupBox x:Name="LoginGb" Header="Login">
+                <TextBox x:Name="LoginTb" TextWrapping="Wrap"/>
+            </GroupBox>
+            <GroupBox x:Name="PasswordGb" Header="Password">
+                <PasswordBox x:Name="PasswordPb"/>
+            </GroupBox>
+            <GroupBox x:Name="CreationDataGb" Header="User creation date">
+                <DatePicker x:Name="CreationDateDp" DisplayDate="03.02.2020" FirstDayOfWeek="Monday"/>
+            </GroupBox>
+            <Button x:Name="AddButton" Content="Add" Margin="4,4,4,4" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="32,4,32,4"/>
+        </StackPanel>
+    </ScrollViewer>
 </Page>
