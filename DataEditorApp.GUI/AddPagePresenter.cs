@@ -16,20 +16,15 @@ namespace DataEditorApp.GUI
         {
             _page = page;
             page.AddBt.Click += AddBtOnClick;
-            _connectionString = new NpgsqlConnectionStringBuilder
-            {
-                Host = "localhost", Username = "postgres", Password = "1234", Database = "auth_app"
-            }.ConnectionString;
         }
-
-        private readonly string _connectionString;
 
         private void AddBtOnClick(object sender, RoutedEventArgs e)
         {
             var login = _page.LoginTb.Text;
             try
             {
-                using var con = new NpgsqlConnection(_connectionString);
+                var conStr = new UsersConnectionStringBuilder().Build();
+                using var con = new NpgsqlConnection(conStr);
                 con.Open();
                 
                 var salt = _saltGenerator.Next();
