@@ -14,4 +14,9 @@
       <PackageReference Include="DbAuthApp.Registration.Postgres" Version="1.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\DataEditorApp.Users\DataEditorApp.Users.csproj" />
+      <ProjectReference Include="..\DataEditorApp.View.Postgres\DataEditorApp.View.Postgres.csproj" />
+    </ItemGroup>
+
 </Project>

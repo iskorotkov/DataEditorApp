@@ -11,7 +11,7 @@
             <Frame x:Name="AddFrame" Content="" NavigationUIVisibility="Hidden" Source="/AddPage.xaml"/>
         </TabItem>
         <TabItem x:Name="ViewTab" Header="View">
-            <Grid Background="#FFE5E5E5"/>
+            <Frame x:Name="ViewFrame" Content="" NavigationUIVisibility="Hidden" Source="/ViewPage.xaml"/>
         </TabItem>
         <TabItem x:Name="EditTab" Header="Edit">
             <Grid Background="#FFE5E5E5"/>
