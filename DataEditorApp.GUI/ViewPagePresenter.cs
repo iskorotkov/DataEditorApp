@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
 using DataEditorApp.Users;
 using DataEditorApp.View.Postgres;
 using Npgsql;
@@ -32,9 +33,10 @@ namespace DataEditorApp.GUI
                 }
 
                 _page.UsersLv.Items.Clear();
-                users.ForEach(u =>
-                    _page.UsersLv.Items.Add(
-                        $"User #{u.Id}: login={u.Login}, creation date={u.CreationDate.Day}.{u.CreationDate.Month}.{u.CreationDate.Year}"));
+                foreach (var user in users)
+                {
+                    _page.UsersLv.Items.Add(user);
+                }
             }
             catch (Exception e)
             {

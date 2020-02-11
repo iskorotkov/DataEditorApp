@@ -4,8 +4,8 @@ namespace DataEditorApp.Users
 {
     public struct User
     {
-        public int Id;
-        public string Login;
-        public DateTime CreationDate;
+        public int Id { get; set; }
+        public string Login { get; set; }
+        public DateTime CreationDate { get; set; }
     }
 }

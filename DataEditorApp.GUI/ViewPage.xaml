@@ -7,10 +7,12 @@
       mc:Ignorable="d"
       Title="ViewPage" Height="450" Width="800" Background="White">
     <Grid>
-        <ListView x:Name="UsersLv">
+        <ListView x:Name="UsersLv" d:DataContext="{d:DesignInstance }">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn/>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Login" DisplayMemberBinding="{Binding Login}" />
+                    <GridViewColumn Header="Creation date" DisplayMemberBinding="{Binding CreationDate, StringFormat=dd.MM.yyyy}" />
                 </GridView>
             </ListView.View>
         </ListView>
