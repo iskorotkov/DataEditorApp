@@ -26,7 +26,7 @@ jobs:
       uses: warrenbuckley/Setup-Nuget@v1
     
     - name: Get dependencies
-      run: nuget sources add -name github -source ${{ secrets.GITHUB_PACKAGES_URL }} -username ${{ PACKAGES_USERNAME }} -password ${{ PACKAGES_PASSWORD }}
+      run: nuget sources add -name github -source ${{ secrets.GITHUB_PACKAGES_URL }} -username ${{ secrets.PACKAGES_USERNAME }} -password ${{ secrets.PACKAGES_PASSWORD }}
       
     - name: Test
       run: dotnet test
