@@ -14,6 +14,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: test
-      uses: dotnet test
+      run: dotnet test
     - name: build
-      uses: dotnet build -c release
+      run: dotnet build -c release
