@@ -10,12 +10,13 @@ on:
 
 jobs:
   build:
-    name: Test and build
+    name: Build and test
     
     runs-on: windows-latest
     
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
       
     - name: Setup .Net Core SDK
       uses: actions/setup-dotnet@1.4.0
@@ -28,8 +29,8 @@ jobs:
     - name: Get dependencies
       run: nuget sources add -name github -source ${{ secrets.GITHUB_PACKAGES_URL }} -username ${{ secrets.PACKAGES_USERNAME }} -password ${{ secrets.PACKAGES_PASSWORD }}
       
-    - name: Test
-      run: dotnet test
-      
     - name: Build
       run: dotnet build -c release
+    
+    - name: Test
+      run: dotnet test
