@@ -7,7 +7,7 @@
       mc:Ignorable="d"
       Title="ViewPage" Height="450" Width="800" Background="White">
     <Grid>
-        <ListView x:Name="UsersLv" d:DataContext="{d:DesignInstance }">
+        <ListView x:Name="UsersLv">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>

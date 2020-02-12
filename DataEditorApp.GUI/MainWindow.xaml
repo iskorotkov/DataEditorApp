@@ -9,7 +9,7 @@
     <StackPanel>
         <Menu x:Name="menu">
             <MenuItem x:Name="EditMenu" Header="Edit">
-                <MenuItem x:Name="AddUser" Header="Add"/>
+                <MenuItem x:Name="AddUser" Header="Add" Click="AddUser_Click"/>
                 <MenuItem x:Name="ModifyUser" Header="Modify"/>
                 <MenuItem x:Name="DeleteUsers" Header="Delete"/>
             </MenuItem>

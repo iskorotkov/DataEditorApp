@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace DataEditorApp.GUI
 {
@@ -10,6 +11,14 @@ namespace DataEditorApp.GUI
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void AddUser_Click(object sender, RoutedEventArgs e)
+        {
+            var w = new Window();
+            var f = new Frame {Content = new AddPage()};
+            w.Content = f;
+            w.Show();
         }
     }
 }
