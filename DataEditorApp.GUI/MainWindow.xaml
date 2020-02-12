@@ -6,18 +6,14 @@
         xmlns:local="clr-namespace:DataEditorApp.GUI"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <TabControl x:Name="tabControl">
-        <TabItem x:Name="AddTab" Header="Add">
-            <Frame x:Name="AddFrame" Content="" NavigationUIVisibility="Hidden" Source="/AddPage.xaml"/>
-        </TabItem>
-        <TabItem x:Name="ViewTab" Header="View">
-            <Frame x:Name="ViewFrame" Content="" NavigationUIVisibility="Hidden" Source="/ViewPage.xaml"/>
-        </TabItem>
-        <TabItem x:Name="EditTab" Header="Edit">
-            <Grid Background="#FFE5E5E5"/>
-        </TabItem>
-        <TabItem x:Name="DeleteTab" Header="Delete">
-            <Grid Background="#FFE5E5E5"/>
-        </TabItem>
-    </TabControl>
+    <StackPanel>
+        <Menu x:Name="menu">
+            <MenuItem x:Name="EditMenu" Header="Edit">
+                <MenuItem x:Name="AddUser" Header="Add"/>
+                <MenuItem x:Name="ModifyUser" Header="Modify"/>
+                <MenuItem x:Name="DeleteUsers" Header="Delete"/>
+            </MenuItem>
+        </Menu>
+        <Frame x:Name="frame" Content="" NavigationUIVisibility="Hidden"/>
+    </StackPanel>
 </Window>
