@@ -10,18 +10,22 @@ namespace DataEditorApp.GUI
     /// <summary>
     /// Interaction logic for AddPage.xaml
     /// </summary>
-    public partial class AddPage : Page
+    public partial class SubmitPage : Page
     {
-        public AddPage()
+        private readonly ISubmitFormContext _context;
+
+        public SubmitPage(ISubmitFormContext context)
         {
+            _context = context;
             InitializeComponent();
+            SubmitButton.Content = context.SubmitButtonText;
+            // TODO: Set window's title
         }
 
         private readonly PasswordHasher _passwordHasher = new PasswordHasher();
         private readonly SaltGenerator _saltGenerator = new SaltGenerator();
 
-
-        private void AddBtOnClick(object sender, RoutedEventArgs e)
+        private void SubmitButton_OnClick(object sender, RoutedEventArgs e)
         {
             var login = LoginTb.Text;
             try

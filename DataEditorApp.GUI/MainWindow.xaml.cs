@@ -8,17 +8,27 @@ namespace DataEditorApp.GUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        public MainWindow() => InitializeComponent();
 
         private void AddUser_Click(object sender, RoutedEventArgs e)
         {
-            var w = new Window();
-            var f = new Frame {Content = new AddPage()};
-            w.Content = f;
-            w.Show();
+            ShowWindowWithPage(new SubmitPage(new AddContext()));
+        }
+
+        private static void ShowWindowWithPage(Page page)
+        {
+            new Window
+            {
+                Content = new Frame
+                {
+                    Content = page
+                }
+            }.Show();
+        }
+
+        private void ModifyUser_OnClick(object sender, RoutedEventArgs e)
+        {
+            ShowWindowWithPage(new SubmitPage(new ModifyContext()));
         }
     }
 }

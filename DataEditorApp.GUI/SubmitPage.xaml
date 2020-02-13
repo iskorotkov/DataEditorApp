@@ -1,4 +1,4 @@
-﻿<Page x:Class="DataEditorApp.GUI.AddPage"
+﻿<Page x:Class="DataEditorApp.GUI.SubmitPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -16,7 +16,8 @@
             <GroupBox x:Name="PasswordGb" Header="Password">
                 <PasswordBox x:Name="PasswordPb"/>
             </GroupBox>
-            <Button x:Name="AddBt" Content="Add" Margin="4,4,4,4" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="32,4,32,4"/>
+            <Button x:Name="SubmitButton" Content="Add" Margin="4,4,4,4" HorizontalAlignment="Center"
+                    VerticalAlignment="Center" Padding="32,4,32,4" Click="SubmitButton_OnClick"/>
         </StackPanel>
     </ScrollViewer>
 </Page>
