@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using DbAuthApp.Login;
 using DbAuthApp.Passwords;
-using DbAuthApp.Registration.Postgres;
-using Npgsql;
 
 namespace DataEditorApp.GUI
 {
@@ -13,6 +12,7 @@ namespace DataEditorApp.GUI
     public partial class SubmitPage : Page
     {
         private readonly ISubmitFormContext _context;
+        private readonly LoginProcessor _processor = new LoginProcessor();
 
         public SubmitPage(ISubmitFormContext context)
         {
@@ -28,21 +28,24 @@ namespace DataEditorApp.GUI
         private void SubmitButton_OnClick(object sender, RoutedEventArgs e)
         {
             var login = LoginTb.Text;
-            try
+            login = _processor.RemoveWhitespaces(login);
+            if (_context.CheckLogin(login))
             {
-                var conStr = new UsersConnectionStringBuilder().Build();
-                using var con = new NpgsqlConnection(conStr);
-                con.Open();
-
                 var salt = _saltGenerator.Next();
                 var password = _passwordHasher.Hash(PasswordPb.Password, salt);
-                new AddUserCommand(con, login, password, salt).Execute();
-
-                MessageBox.Show($"User with login '{login}' was created", "User created");
+                try
+                {
+                    _context.SubmitChanges(login, password, salt, null);
+                    MessageBox.Show($"User with login '{login}' was created", "User created");
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message, "Error occured");
+                }
             }
-            catch (Exception exception)
+            else
             {
-                MessageBox.Show(exception.Message, "Error occured");
+                MessageBox.Show("Login doesn't match specified criteria.");
             }
         }
     }

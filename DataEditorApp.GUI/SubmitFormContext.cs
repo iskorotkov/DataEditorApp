@@ -1,4 +1,7 @@
-﻿using DataEditorApp.Users;
+﻿using System;
+using DbAuthApp.Login;
+using DbAuthApp.Registration.Postgres;
+using Npgsql;
 
 namespace DataEditorApp.GUI
 {
@@ -8,7 +11,7 @@ namespace DataEditorApp.GUI
         public string FormTitle { get; }
 
         public bool CheckLogin(string login);
-        public void SubmitChanges(User user);
+        public void SubmitChanges(string login, byte[] password, byte[] salt, DateTime? creationDate);
     }
 
     public class AddContext : ISubmitFormContext
@@ -16,14 +19,18 @@ namespace DataEditorApp.GUI
         public string SubmitButtonText => "Add";
         public string FormTitle => "Add user";
 
+        private readonly LoginChecker _checker = new LoginChecker();
+
         public bool CheckLogin(string login)
         {
-            throw new System.NotImplementedException();
+            return _checker.IsCorrect(login);
         }
 
-        public void SubmitChanges(User user)
+        public void SubmitChanges(string login, byte[] password, byte[] salt, DateTime? creationDate)
         {
-            throw new System.NotImplementedException();
+            using var con = new NpgsqlConnection(new UsersConnectionStringBuilder().Build());
+            con.Open();
+            new AddUserCommand(con, login, password, salt).Execute();
         }
     }
 
@@ -37,7 +44,7 @@ namespace DataEditorApp.GUI
             throw new System.NotImplementedException();
         }
 
-        public void SubmitChanges(User user)
+        public void SubmitChanges(string login, byte[] password, byte[] salt, DateTime? creationDate)
         {
             throw new System.NotImplementedException();
         }
