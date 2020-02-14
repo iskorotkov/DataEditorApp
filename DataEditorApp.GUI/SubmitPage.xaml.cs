@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using DbAuthApp.Login;
-using DbAuthApp.Passwords;
 
 namespace DataEditorApp.GUI
 {
@@ -20,10 +19,8 @@ namespace DataEditorApp.GUI
             InitializeComponent();
             SubmitButton.Content = context.SubmitButtonText;
             // TODO: Set window's title
+            // TODO: Enable/disable creation date control
         }
-
-        private readonly PasswordHasher _passwordHasher = new PasswordHasher();
-        private readonly SaltGenerator _saltGenerator = new SaltGenerator();
 
         private void SubmitButton_OnClick(object sender, RoutedEventArgs e)
         {
@@ -31,11 +28,10 @@ namespace DataEditorApp.GUI
             login = _processor.RemoveWhitespaces(login);
             if (_context.CheckLogin(login))
             {
-                var salt = _saltGenerator.Next();
-                var password = _passwordHasher.Hash(PasswordPb.Password, salt);
                 try
                 {
-                    _context.SubmitChanges(login, password, salt, null);
+                    // TODO: Pass creation date
+                    _context.SubmitChanges(login, PasswordPb.Password.Trim(), null);
                     MessageBox.Show($"User with login '{login}' was created", "User created");
                 }
                 catch (Exception exception)
