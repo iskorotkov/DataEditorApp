@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using DataEditorApp.Users;
@@ -14,6 +15,11 @@ namespace DataEditorApp.GUI
         {
             InitializeComponent();
             PopulateUsersList();
+        }
+
+        public IEnumerable<User> GetSelectedUsers()
+        {
+            return UsersLv.SelectedItems.Cast<User>();
         }
 
         private void PopulateUsersList()

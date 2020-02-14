@@ -1,4 +1,5 @@
 ﻿using System;
+using DataEditorApp.Users;
 using DbAuthApp.Login;
 using DbAuthApp.Passwords;
 using DbAuthApp.Registration.Postgres;
@@ -13,7 +14,7 @@ namespace DataEditorApp.GUI
         public bool CreationDateEnabled { get; }
 
         public bool IsLoginValid(string login);
-        public void SubmitChanges(string login, string password, DateTime? creationDate);
+        public void SubmitChanges(User? oldUserData, string login, string password, DateTime? creationDate);
     }
 
     public class AddContext : ISubmitFormContext
@@ -38,7 +39,7 @@ namespace DataEditorApp.GUI
             return !new IsLoginPresentCommand(con, login).Execute();
         }
 
-        public void SubmitChanges(string login, string password, DateTime? creationDate)
+        public void SubmitChanges(User? oldUserData, string login, string password, DateTime? creationDate)
         {
             using var con = new NpgsqlConnection(new UsersConnectionStringBuilder().Build());
             con.Open();
@@ -59,7 +60,7 @@ namespace DataEditorApp.GUI
             throw new System.NotImplementedException();
         }
 
-        public void SubmitChanges(string login, string password, DateTime? creationDate)
+        public void SubmitChanges(User? oldUserData, string login, string password, DateTime? creationDate)
         {
             throw new System.NotImplementedException();
         }
