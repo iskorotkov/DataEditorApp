@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using DataEditorApp.Users;
 using DbAuthApp.Login;
 using DbAuthApp.Passwords;
@@ -11,7 +12,7 @@ namespace DataEditorApp.GUI
     {
         public string SubmitButtonText { get; }
         public string FormTitle { get; }
-        public bool CreationDateEnabled { get; }
+        public Visibility CreationDateEnabled { get; }
 
         public bool IsLoginValid(string login);
         public void SubmitChanges(User? oldUserData, string login, string password, DateTime? creationDate);
@@ -21,7 +22,7 @@ namespace DataEditorApp.GUI
     {
         public string SubmitButtonText => "Add";
         public string FormTitle => "Add user";
-        public bool CreationDateEnabled => false;
+        public Visibility CreationDateEnabled => Visibility.Collapsed;
 
         private readonly LoginChecker _checker = new LoginChecker();
         private readonly PasswordHasher _passwordHasher = new PasswordHasher();
@@ -53,7 +54,7 @@ namespace DataEditorApp.GUI
     {
         public string SubmitButtonText => "Modify";
         public string FormTitle => "Modify user";
-        public bool CreationDateEnabled => true;
+        public Visibility CreationDateEnabled => Visibility.Visible;
 
         public bool IsLoginValid(string login)
         {

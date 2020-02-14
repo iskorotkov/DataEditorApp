@@ -25,6 +25,7 @@ namespace DataEditorApp.GUI
             _user = oldUser;
             SubmitButton.Content = context.SubmitButtonText;
             WindowTitle = context.FormTitle;
+            CreationDateBox.Visibility = context.CreationDateEnabled;
             // TODO: Enable/disable creation date control
 
             if (oldUser is { } user)

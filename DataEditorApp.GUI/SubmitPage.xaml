@@ -16,7 +16,7 @@
             <GroupBox x:Name="PasswordGb" Header="Password">
                 <PasswordBox x:Name="PasswordPb"/>
             </GroupBox>
-            <GroupBox Header="Creation date">
+            <GroupBox x:Name="CreationDateBox" Header="Creation date">
                 <DatePicker x:Name="CreationDatePicker"></DatePicker>
             </GroupBox>
             <Button x:Name="SubmitButton" Content="Add" Margin="4,4,4,4" HorizontalAlignment="Center"
