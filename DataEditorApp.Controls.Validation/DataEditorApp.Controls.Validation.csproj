@@ -10,7 +10,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="DbAuthApp.InputFieldDecoration" Version="1.1.0" />
+      <PackageReference Include="DbAuthApp.InputFieldDecoration" Version="1.1.1" />
       <PackageReference Include="DbAuthApp.Login" Version="1.0.1" />
       <PackageReference Include="DbAuthApp.Passwords" Version="1.0.0" />
     </ItemGroup>
