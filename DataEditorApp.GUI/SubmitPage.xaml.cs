@@ -24,9 +24,10 @@ namespace DataEditorApp.GUI
             InitializeComponent();
             SubmitButton.Content = context.SubmitButtonText;
 
-            LoginTb.Text = oldUser?.Login;
-            // TODO: Set old user's date
-            // TODO: Set window's title
+            LoginTb.Text = oldUser?.Login ?? "";
+            CreationDatePicker.SelectedDate = oldUser?.CreationDate ?? DateTime.Now;
+
+            WindowTitle = context.FormTitle; // TODO: Set window's title
             // TODO: Enable/disable creation date control
         }
 
