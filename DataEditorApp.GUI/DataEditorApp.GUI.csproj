@@ -7,6 +7,7 @@
         <Authors>Ivan Korotkov</Authors>
         <Company>Ivan Korotkov</Company>
         <RepositoryUrl>https://github.com/iskorotkov/DataEditorApp</RepositoryUrl>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
