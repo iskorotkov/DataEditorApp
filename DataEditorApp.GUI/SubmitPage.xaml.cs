@@ -26,7 +26,7 @@ namespace DataEditorApp.GUI
         {
             var login = LoginTb.Text;
             login = _processor.RemoveWhitespaces(login);
-            if (_context.CheckLogin(login))
+            if (_context.IsLoginValid(login))
             {
                 try
                 {

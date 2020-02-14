@@ -12,7 +12,7 @@ namespace DataEditorApp.GUI
         public string FormTitle { get; }
         public bool CreationDateEnabled { get; }
 
-        public bool CheckLogin(string login);
+        public bool IsLoginValid(string login);
         public void SubmitChanges(string login, string password, DateTime? creationDate);
     }
 
@@ -26,10 +26,16 @@ namespace DataEditorApp.GUI
         private readonly PasswordHasher _passwordHasher = new PasswordHasher();
         private readonly SaltGenerator _saltGenerator = new SaltGenerator();
 
-        public bool CheckLogin(string login)
+        public bool IsLoginValid(string login)
         {
-            return _checker.IsCorrect(login);
-            // TODO: Check in DB for presence
+            if (!_checker.IsCorrect(login))
+            {
+                return false;
+            }
+
+            using var con = new NpgsqlConnection(new UsersConnectionStringBuilder().Build());
+            con.Open();
+            return !new IsLoginPresentCommand(con, login).Execute();
         }
 
         public void SubmitChanges(string login, string password, DateTime? creationDate)
@@ -48,7 +54,7 @@ namespace DataEditorApp.GUI
         public string FormTitle => "Modify user";
         public bool CreationDateEnabled => true;
 
-        public bool CheckLogin(string login)
+        public bool IsLoginValid(string login)
         {
             throw new System.NotImplementedException();
         }
