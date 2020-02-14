@@ -9,8 +9,10 @@ namespace DataEditorApp.Controls.Validation
         protected TextBoxDecorator? Decorator { get; private set; }
 
         public bool IsCorrect => Decorator.IsCorrect;
+        public abstract string Text { get; set; }
         public TextBoxDecorator.OnIsCorrectChangedDelegate OnIsCorrectChanged => Decorator.OnIsCorrectChanged;
         public Predicate<string>? IsAvailable { get; set; } = null;
+        public void ResetInputBox() => Decorator.Reset();
 
         protected void RegisterTextBox(TextBox inputBox)
         {
@@ -24,6 +26,6 @@ namespace DataEditorApp.Controls.Validation
             inputBox.PasswordChanged += (sender, args) => OnTextChanged();
         }
 
-        public abstract void OnTextChanged();
+        protected abstract void OnTextChanged();
     }
 }

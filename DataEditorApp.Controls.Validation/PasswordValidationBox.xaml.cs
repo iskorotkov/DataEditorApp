@@ -12,10 +12,15 @@ namespace DataEditorApp.Controls.Validation
             RegisterPasswordBox(InputBox);
         }
 
-        public override void OnTextChanged()
+        public override string Text
         {
-            var password = InputBox.Password.Trim();
-            if (_checker.IsStrong(password))
+            get => InputBox.Password.Trim();
+            set => InputBox.Password = value;
+        }
+
+        protected override void OnTextChanged()
+        {
+            if (_checker.IsStrong(Text))
                 Decorator.InputIsCorrect();
             else
                 Decorator.InputIsIncorrect("Password isn't strong enough");

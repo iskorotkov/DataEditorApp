@@ -13,12 +13,17 @@ namespace DataEditorApp.Controls.Validation
             RegisterTextBox(InputBox);
         }
 
-        public override void OnTextChanged()
+        public override string Text
         {
-            var login = _processor.RemoveWhitespaces(InputBox.Text);
-            if (_checker.IsCorrect(login))
+            get => _processor.RemoveWhitespaces(InputBox.Text);
+            set => InputBox.Text = value;
+        }
+
+        protected override void OnTextChanged()
+        {
+            if (_checker.IsCorrect(Text))
             {
-                if (IsAvailable != null && !IsAvailable(login))
+                if (IsAvailable != null && !IsAvailable(Text))
                     Decorator.InputIsIncorrect("User with this login already exists");
                 else
                     Decorator.InputIsCorrect();
