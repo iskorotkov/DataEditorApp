@@ -16,6 +16,9 @@
             <GroupBox x:Name="PasswordGb" Header="Password">
                 <PasswordBox x:Name="PasswordPb"/>
             </GroupBox>
+            <GroupBox Header="Creation date">
+                <DatePicker x:Name="CreationDatePicker"></DatePicker>
+            </GroupBox>
             <Button x:Name="SubmitButton" Content="Add" Margin="4,4,4,4" HorizontalAlignment="Center"
                     VerticalAlignment="Center" Padding="32,4,32,4" Click="SubmitButton_OnClick"/>
         </StackPanel>
