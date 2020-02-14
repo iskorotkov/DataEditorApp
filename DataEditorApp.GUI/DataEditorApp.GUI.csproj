@@ -19,6 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\DataEditorApp.Controls.Validation\DataEditorApp.Controls.Validation.csproj" />
       <ProjectReference Include="..\DataEditorApp.Users\DataEditorApp.Users.csproj" />
       <ProjectReference Include="..\DataEditorApp.View.Postgres\DataEditorApp.View.Postgres.csproj" />
     </ItemGroup>

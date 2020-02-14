@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using DataEditorApp.Users;
-using DbAuthApp.Login;
 using DbAuthApp.Passwords;
 using DbAuthApp.Registration.Postgres;
 using Npgsql;
@@ -24,17 +23,11 @@ namespace DataEditorApp.GUI
         public string FormTitle => "Add user";
         public Visibility CreationDateEnabled => Visibility.Collapsed;
 
-        private readonly LoginChecker _checker = new LoginChecker();
         private readonly PasswordHasher _passwordHasher = new PasswordHasher();
         private readonly SaltGenerator _saltGenerator = new SaltGenerator();
 
         public bool IsLoginValid(string login)
         {
-            if (!_checker.IsCorrect(login))
-            {
-                return false;
-            }
-
             using var con = new NpgsqlConnection(new UsersConnectionStringBuilder().Build());
             con.Open();
             return !new IsLoginPresentCommand(con, login).Execute();
