@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <UseWPF>true</UseWPF>
+        <Nullable>enable</Nullable>
+        <Authors>Ivan Korotkov</Authors>
+        <Company>Ivan Korotkov</Company>
+        <RepositoryUrl>https://github.com/iskorotkov/DataEditorApp</RepositoryUrl>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="DbAuthApp.InputFieldDecoration" Version="1.1.0" />
+      <PackageReference Include="DbAuthApp.Login" Version="1.0.1" />
+      <PackageReference Include="DbAuthApp.Passwords" Version="1.0.0" />
+    </ItemGroup>
+
+</Project>
