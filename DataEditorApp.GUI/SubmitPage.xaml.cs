@@ -19,16 +19,19 @@ namespace DataEditorApp.GUI
 
         public SubmitPage(ISubmitFormContext context, User? oldUser)
         {
+            InitializeComponent();
+
             _context = context;
             _user = oldUser;
-            InitializeComponent();
             SubmitButton.Content = context.SubmitButtonText;
-
-            LoginTb.Text = oldUser?.Login ?? "";
-            CreationDatePicker.SelectedDate = oldUser?.CreationDate ?? DateTime.Now;
-
-            WindowTitle = context.FormTitle; // TODO: Set window's title
+            WindowTitle = context.FormTitle;
             // TODO: Enable/disable creation date control
+
+            if (oldUser is { } user)
+            {
+                LoginTb.Text = user.Login;
+                CreationDatePicker.SelectedDate = user.CreationDate;
+            }
         }
 
         private void SubmitButton_OnClick(object sender, RoutedEventArgs e)

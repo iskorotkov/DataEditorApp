@@ -11,7 +11,7 @@ namespace DataEditorApp.GUI
     public partial class MainWindow : Window
     {
         private readonly ViewPage _viewPage;
-        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -26,13 +26,7 @@ namespace DataEditorApp.GUI
 
         private static void ShowWindowWithPage(Page page)
         {
-            new Window
-            {
-                Content = new Frame
-                {
-                    Content = page
-                }
-            }.Show();
+            new Window {Content = page}.Show();
         }
 
         private void ModifyUser_OnClick(object sender, RoutedEventArgs e)
@@ -43,6 +37,7 @@ namespace DataEditorApp.GUI
                 // TODO: Handle selection of multiple users
                 return;
             }
+
             ShowWindowWithPage(new SubmitPage(new ModifyContext(), selectedUsers[0]));
         }
     }
