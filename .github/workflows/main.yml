@@ -18,7 +18,7 @@ jobs:
     - name: Setup Nuget
       uses: warrenbuckley/Setup-Nuget@v1
     - name: Add Github Packages registry to Nuget
-      run: nuget sources add -name github -source https://nuget.pkg.github.com/iskorotkov/index.json -username iskorotkov -password ${{ secrets.GITHUB_TOKEN }}
+      run: nuget sources add -name github -source https://nuget.pkg.github.com/iskorotkov/index.json -username iskorotkov -password ${{ secrets.PACKAGES_PASSWORD }}
     - name: Build
       run: dotnet build -c release
     - name: Test
@@ -31,7 +31,7 @@ jobs:
     - name: Setup Nuget
       uses: warrenbuckley/Setup-Nuget@v1
     - name: Add Github Packages registry to Nuget
-      run: nuget sources add -name github -source https://nuget.pkg.github.com/iskorotkov/index.json -username iskorotkov -password ${{ secrets.GITHUB_TOKEN }}
+      run: nuget sources add -name github -source https://nuget.pkg.github.com/iskorotkov/index.json -username iskorotkov -password ${{ secrets.PACKAGES_PASSWORD }}
     - name: Pack Nuget packages
       run: dotnet pack -c release
     - name: Push packages to Github Packages
