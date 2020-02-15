@@ -8,27 +8,26 @@ namespace DataEditorApp.GUI
     /// <summary>
     /// Interaction logic for AddPage.xaml
     /// </summary>
-    public partial class SubmitPage : Page
+    public abstract partial class SubmitPage : Page
     {
-        private readonly ISubmitFormContext _context;
-        private readonly User? _user;
-
-        public SubmitPage(ISubmitFormContext context, User? oldUser)
+        protected SubmitPage(User? oldUser)
         {
             InitializeComponent();
+            User = oldUser;
+        }
 
-            _context = context;
-            _user = oldUser;
-            SubmitButton.Content = context.SubmitButtonText;
-            WindowTitle = context.FormTitle;
-            CreationDateBox.Visibility = context.CreationDateEnabled;
-            PasswordPb.AllowEmpty = context.AllowEmptyPassword;
+        protected abstract bool AllowEmptyPassword { get; }
+        protected abstract Visibility CreationDateEnabled { get; }
+        protected abstract string SubmitButtonText { get; }
+        protected abstract string FormTitle { get; }
+        protected User? User { get; set; }
 
-            if (oldUser is { } user)
-            {
-                LoginTb.Text = user.Login;
-                CreationDatePicker.SelectedDate = user.CreationDate;
-            }
+        protected void Setup()
+        {
+            SubmitButton.Content = SubmitButtonText;
+            WindowTitle = FormTitle;
+            CreationDateBox.Visibility = CreationDateEnabled;
+            PasswordPb.AllowEmpty = AllowEmptyPassword;
         }
 
         private void SubmitButton_OnClick(object sender, RoutedEventArgs e)
@@ -39,7 +38,7 @@ namespace DataEditorApp.GUI
                 return;
             }
 
-            if (!_context.IsLoginValid(LoginTb.Text))
+            if (!IsLoginValid(LoginTb.Text))
             {
                 MessageBox.Show("User with the same login already exists");
                 return;
@@ -53,13 +52,19 @@ namespace DataEditorApp.GUI
 
             try
             {
-                _context.SubmitChanges(_user, LoginTb.Text, PasswordPb.Text.Trim(), CreationDatePicker.SelectedDate);
-                MessageBox.Show(_context.SuccessMessage(LoginTb.Text), "Success");
+                SubmitChanges(User, LoginTb.Text, PasswordPb.Text, CreationDatePicker.SelectedDate);
+                MessageBox.Show(SuccessMessage(LoginTb.Text), "Success");
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message, "Error occured");
             }
         }
+
+        protected abstract string SuccessMessage(string login);
+
+        protected abstract void SubmitChanges(User? user, string login, string password, DateTime? creationDate);
+
+        protected abstract bool IsLoginValid(string loginTbText);
     }
 }
