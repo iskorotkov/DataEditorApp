@@ -7,19 +7,31 @@ using Npgsql;
 
 namespace DataEditorApp.GUI
 {
-    public class ModifyContext : ISubmitFormContext
+    public class ModifyPage : SubmitPage
     {
-        public string SubmitButtonText => "Modify";
-        public string FormTitle => "Modify user";
-        public Visibility CreationDateEnabled => Visibility.Visible;
-        public bool AllowEmptyPassword => true;
-
         private readonly PasswordHasher _passwordHasher = new PasswordHasher();
         private readonly SaltGenerator _saltGenerator = new SaltGenerator();
+        
+        public ModifyPage(User? oldUser) : base(oldUser)
+        {
+            InitializeComponent();
+            Setup();
 
-        public bool IsLoginValid(string login) => true;
+            if (oldUser is { } user)
+            {
+                LoginTb.Text = user.Login;
+                CreationDatePicker.SelectedDate = user.CreationDate;
+            }
+        }
 
-        public void SubmitChanges(User? oldUserData, string login, string password, DateTime? creationDate)
+        protected override string SubmitButtonText => "Modify";
+        protected override string FormTitle => "Modify user";
+        protected override Visibility CreationDateEnabled => Visibility.Visible;
+        protected override bool AllowEmptyPassword => true;
+
+        protected override bool IsLoginValid(string login) => true;
+
+        protected override void SubmitChanges(User? oldUserData, string login, string password, DateTime? creationDate)
         {
             using var con = new NpgsqlConnection(new UsersConnectionStringBuilder().Build());
             con.Open();
@@ -41,7 +53,7 @@ namespace DataEditorApp.GUI
             }
         }
 
-        public string SuccessMessage(string login)
+        protected override string SuccessMessage(string login)
         {
             return $"Changes to user '{login}' were applied";
         }

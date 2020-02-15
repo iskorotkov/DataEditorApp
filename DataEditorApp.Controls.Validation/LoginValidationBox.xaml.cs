@@ -21,8 +21,8 @@ namespace DataEditorApp.Controls.Validation
 
         protected override void OnTextChanged()
         {
-            if (AllowEmpty && Text.Length == 0)
-                Decorator.InputIsCorrect();
+            if (Text.Length == 0)
+                Decorator.Reset();
             else if (_checker.IsCorrect(Text))
             {
                 if (IsAvailable != null && !IsAvailable(Text))

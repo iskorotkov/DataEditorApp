@@ -7,24 +7,30 @@ using Npgsql;
 
 namespace DataEditorApp.GUI
 {
-    public class AddContext : ISubmitFormContext
+    public class AddPage : SubmitPage
     {
-        public string SubmitButtonText => "Add";
-        public string FormTitle => "Add user";
-        public Visibility CreationDateEnabled => Visibility.Collapsed;
-        public bool AllowEmptyPassword => false;
-
         private readonly PasswordHasher _passwordHasher = new PasswordHasher();
         private readonly SaltGenerator _saltGenerator = new SaltGenerator();
 
-        public bool IsLoginValid(string login)
+        public AddPage() : base(null)
+        {
+            InitializeComponent();
+            Setup();
+        }
+
+        protected override string SubmitButtonText => "Add";
+        protected override string FormTitle => "Add user";
+        protected override Visibility CreationDateEnabled => Visibility.Collapsed;
+        protected override bool AllowEmptyPassword => false;
+
+        protected override bool IsLoginValid(string login)
         {
             using var con = new NpgsqlConnection(new UsersConnectionStringBuilder().Build());
             con.Open();
             return !new IsLoginPresentCommand(con, login).Execute();
         }
 
-        public void SubmitChanges(User? oldUserData, string login, string password, DateTime? creationDate)
+        protected override void SubmitChanges(User? oldUserData, string login, string password, DateTime? creationDate)
         {
             using var con = new NpgsqlConnection(new UsersConnectionStringBuilder().Build());
             con.Open();
@@ -33,7 +39,7 @@ namespace DataEditorApp.GUI
             new AddUserCommand(con, login, hashedPassword, salt).Execute();
         }
 
-        public string SuccessMessage(string login)
+        protected override string SuccessMessage(string login)
         {
             return $"User with login '{login}' was created";
         }
