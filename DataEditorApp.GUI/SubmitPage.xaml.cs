@@ -22,6 +22,7 @@ namespace DataEditorApp.GUI
             SubmitButton.Content = context.SubmitButtonText;
             WindowTitle = context.FormTitle;
             CreationDateBox.Visibility = context.CreationDateEnabled;
+            PasswordPb.AllowEmpty = context.AllowEmptyPassword;
 
             if (oldUser is { } user)
             {

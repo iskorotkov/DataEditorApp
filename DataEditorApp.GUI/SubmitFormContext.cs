@@ -9,6 +9,7 @@ namespace DataEditorApp.GUI
         public string SubmitButtonText { get; }
         public string FormTitle { get; }
         public Visibility CreationDateEnabled { get; }
+        public bool AllowEmptyPassword { get; }
 
         public bool IsLoginValid(string login);
         public void SubmitChanges(User? oldUserData, string login, string password, DateTime? creationDate);

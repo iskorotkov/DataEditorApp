@@ -12,6 +12,7 @@ namespace DataEditorApp.GUI
         public string SubmitButtonText => "Add";
         public string FormTitle => "Add user";
         public Visibility CreationDateEnabled => Visibility.Collapsed;
+        public bool AllowEmptyPassword => false;
 
         private readonly PasswordHasher _passwordHasher = new PasswordHasher();
         private readonly SaltGenerator _saltGenerator = new SaltGenerator();
