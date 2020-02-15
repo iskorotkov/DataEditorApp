@@ -22,7 +22,7 @@ namespace DataEditorApp.GUI
             SubmitButton.Content = context.SubmitButtonText;
             WindowTitle = context.FormTitle;
             CreationDateBox.Visibility = context.CreationDateEnabled;
-            // TODO: Enable/disable creation date control
+            PasswordPb.AllowEmpty = context.AllowEmptyPassword;
 
             if (oldUser is { } user)
             {
@@ -53,8 +53,8 @@ namespace DataEditorApp.GUI
 
             try
             {
-                _context.SubmitChanges(_user, LoginTb.Text, PasswordPb.Text, CreationDatePicker.SelectedDate);
-                MessageBox.Show($"User with login '{LoginTb.Text}' was created", "User created");
+                _context.SubmitChanges(_user, LoginTb.Text, PasswordPb.Text.Trim(), CreationDatePicker.SelectedDate);
+                MessageBox.Show(_context.SuccessMessage(LoginTb.Text), "Success");
             }
             catch (Exception exception)
             {

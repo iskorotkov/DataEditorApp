@@ -21,7 +21,9 @@ namespace DataEditorApp.Controls.Validation
 
         protected override void OnTextChanged()
         {
-            if (_checker.IsCorrect(Text))
+            if (AllowEmpty && Text.Length == 0)
+                Decorator.InputIsCorrect();
+            else if (_checker.IsCorrect(Text))
             {
                 if (IsAvailable != null && !IsAvailable(Text))
                     Decorator.InputIsIncorrect("User with this login already exists");

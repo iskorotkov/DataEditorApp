@@ -20,7 +20,9 @@ namespace DataEditorApp.Controls.Validation
 
         protected override void OnTextChanged()
         {
-            if (_checker.IsStrong(Text))
+            if (AllowEmpty && Text.Length == 0)
+                Decorator.InputIsCorrect();
+            else if (_checker.IsStrong(Text))
                 Decorator.InputIsCorrect();
             else
                 Decorator.InputIsIncorrect("Password isn't strong enough");
