@@ -1,3 +1,3 @@
 # DataEditorApp
 
-![CI](https://github.com/iskorotkov/DataEditorApp/workflows/CI/badge.svg)
+![deploy](https://github.com/iskorotkov/DataEditorApp/workflows/deploy/badge.svg)
