@@ -17,7 +17,8 @@ namespace DataEditorApp.View.Postgres
                 CommandText = @"SELECT users.id,
                                        users.login,
                                        users.creation_date
-                                FROM users"
+                                FROM users
+                                ORDER BY id"
             };
         }
 
