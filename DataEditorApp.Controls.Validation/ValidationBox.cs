@@ -19,12 +19,16 @@ namespace DataEditorApp.Controls.Validation
         {
             Decorator = new TextBoxDecorator(inputBox);
             inputBox.TextChanged += (sender, args) => OnTextChanged();
+            if (AllowEmpty)
+                Decorator.InputIsCorrect();
         }
 
         protected void RegisterPasswordBox(PasswordBox inputBox)
         {
             Decorator = new TextBoxDecorator(inputBox);
             inputBox.PasswordChanged += (sender, args) => OnTextChanged();
+            if (AllowEmpty)
+                Decorator.InputIsCorrect();
         }
 
         protected abstract void OnTextChanged();
