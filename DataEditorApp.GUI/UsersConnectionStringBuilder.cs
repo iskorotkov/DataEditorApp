@@ -1,4 +1,5 @@
-﻿using Npgsql;
+﻿using System;
+using Npgsql;
 
 namespace DataEditorApp.GUI
 {
@@ -8,7 +9,11 @@ namespace DataEditorApp.GUI
         {
             return new NpgsqlConnectionStringBuilder
             {
-                Host = "localhost", Username = "postgres", Password = "1234", Database = "auth_app"
+                Host = DatabaseSettings.Default.Host,
+                Database = DatabaseSettings.Default.Database,
+                Port = DatabaseSettings.Default.Port,
+                Username = Environment.GetEnvironmentVariable("POSTGRESQL_USERNAME"),
+                Password = Environment.GetEnvironmentVariable("POSTGRESQL_PASSWORD")
             }.ConnectionString;
         }
     }
