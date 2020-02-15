@@ -25,7 +25,7 @@ jobs:
         -name github
         -source https://nuget.pkg.github.com/iskorotkov/index.json
         -username iskorotkov
-        -password ${{ secrets.GITHUB_TOKEN }}
+        -password ${{ secrets.PACKAGES_PASSWORD }}
     
     - name: Build
       run: dotnet build -c release
