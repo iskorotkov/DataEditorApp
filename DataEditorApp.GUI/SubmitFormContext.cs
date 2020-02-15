@@ -13,5 +13,6 @@ namespace DataEditorApp.GUI
 
         public bool IsLoginValid(string login);
         public void SubmitChanges(User? oldUserData, string login, string password, DateTime? creationDate);
+        string SuccessMessage(string login);
     }
 }

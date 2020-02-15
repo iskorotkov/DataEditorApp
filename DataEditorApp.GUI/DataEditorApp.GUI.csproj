@@ -8,7 +8,7 @@
         <Company>Ivan Korotkov</Company>
         <RepositoryUrl>https://github.com/iskorotkov/DataEditorApp</RepositoryUrl>
         <Nullable>enable</Nullable>
-        <PackageVersion>1.1.0</PackageVersion>
+        <PackageVersion>1.2.0</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>

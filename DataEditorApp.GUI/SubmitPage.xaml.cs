@@ -54,7 +54,7 @@ namespace DataEditorApp.GUI
             try
             {
                 _context.SubmitChanges(_user, LoginTb.Text, PasswordPb.Text.Trim(), CreationDatePicker.SelectedDate);
-                MessageBox.Show($"User with login '{LoginTb.Text}' was created", "User created");
+                MessageBox.Show(_context.SuccessMessage(LoginTb.Text), "Success");
             }
             catch (Exception exception)
             {

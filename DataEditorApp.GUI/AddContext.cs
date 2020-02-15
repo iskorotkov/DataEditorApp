@@ -32,5 +32,10 @@ namespace DataEditorApp.GUI
             var hashedPassword = _passwordHasher.Hash(password, salt);
             new AddUserCommand(con, login, hashedPassword, salt).Execute();
         }
+
+        public string SuccessMessage(string login)
+        {
+            return $"User with login '{login}' was created";
+        }
     }
 }

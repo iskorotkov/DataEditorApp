@@ -40,5 +40,10 @@ namespace DataEditorApp.GUI
                 new ModifyUserCommand(con, oldUserData.Value.Id, login, creationDate.Value).Execute();
             }
         }
+
+        public string SuccessMessage(string login)
+        {
+            return $"Changes to user '{login}' were applied";
+        }
     }
 }
