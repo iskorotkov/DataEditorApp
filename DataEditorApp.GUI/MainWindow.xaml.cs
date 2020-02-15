@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using DataEditorApp.Users;
 
 namespace DataEditorApp.GUI
 {
@@ -26,7 +25,12 @@ namespace DataEditorApp.GUI
 
         private static void ShowWindowWithPage(Page page)
         {
-            new Window {Content = page}.Show();
+            new Window
+            {
+                Content = page,
+                Height = 400,
+                Width = 400
+            }.Show();
         }
 
         private void ModifyUser_OnClick(object sender, RoutedEventArgs e)
