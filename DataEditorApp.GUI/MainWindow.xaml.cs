@@ -30,8 +30,8 @@ namespace DataEditorApp.GUI
             new Window
             {
                 Content = page,
-                Height = 400,
-                Width = 400
+                Width = 400,
+                Height = 300,
             }.Show();
         }
 

@@ -6,8 +6,8 @@
       xmlns:local="clr-namespace:DataEditorApp.GUI"
       xmlns:validation="clr-namespace:DataEditorApp.Controls.Validation;assembly=DataEditorApp.Controls.Validation"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddPage" Background="White">
+      Height="Auto" Width="Auto"
+      Title="Submit user" Background="White">
 
     <ScrollViewer>
         <StackPanel Margin="8,8,8,8">

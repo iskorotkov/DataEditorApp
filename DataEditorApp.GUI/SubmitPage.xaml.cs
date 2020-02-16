@@ -20,7 +20,7 @@ namespace DataEditorApp.GUI
         protected abstract Visibility CreationDateEnabled { get; }
         protected abstract string SubmitButtonText { get; }
         protected abstract string FormTitle { get; }
-        protected User? User { get; set; }
+        private User? User { get; set; }
 
         protected void Setup()
         {

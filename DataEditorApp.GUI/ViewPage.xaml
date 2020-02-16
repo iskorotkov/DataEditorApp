@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:DataEditorApp.GUI"
       mc:Ignorable="d"
-      Title="ViewPage" Height="Auto" Width="Auto" Background="White">
+      Title="View users" Height="Auto" Width="Auto" Background="White">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
