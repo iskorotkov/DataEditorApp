@@ -45,5 +45,14 @@ namespace DataEditorApp.GUI
                 MessageBox.Show(e.Message, "Error while reading users data");
             }
         }
+
+        public void RemoveSelectedUsers()
+        {
+            var selected = GetSelectedUsers().ToList();
+            foreach (var item in selected)
+            {
+                UsersLv.Items.Remove(item);
+            }
+        }
     }
 }

@@ -8,7 +8,7 @@
         <Company>Ivan Korotkov</Company>
         <RepositoryUrl>https://github.com/iskorotkov/DataEditorApp</RepositoryUrl>
         <Nullable>enable</Nullable>
-        <PackageVersion>1.2.0</PackageVersion>
+        <PackageVersion>1.3.0</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -19,6 +19,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DataEditorApp.Controls.Validation\DataEditorApp.Controls.Validation.csproj" />
+      <ProjectReference Include="..\DataEditorApp.Deletion.Postgres\DataEditorApp.Deletion.Postgres.csproj" />
       <ProjectReference Include="..\DataEditorApp.Modification.Postgres\DataEditorApp.Modification.Postgres.csproj" />
       <ProjectReference Include="..\DataEditorApp.Users\DataEditorApp.Users.csproj" />
       <ProjectReference Include="..\DataEditorApp.View.Postgres\DataEditorApp.View.Postgres.csproj" />
