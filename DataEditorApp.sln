@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataEditorApp.Controls.Vali
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataEditorApp.Modification.Postgres", "DataEditorApp.Modification.Postgres\DataEditorApp.Modification.Postgres.csproj", "{15708514-E016-4DBA-A003-9A06DCC9EF4A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataEditorApp.Deletion.Postgres", "DataEditorApp.Deletion.Postgres\DataEditorApp.Deletion.Postgres.csproj", "{90C42172-5C00-451C-93A6-382976D641FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{15708514-E016-4DBA-A003-9A06DCC9EF4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15708514-E016-4DBA-A003-9A06DCC9EF4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15708514-E016-4DBA-A003-9A06DCC9EF4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90C42172-5C00-451C-93A6-382976D641FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90C42172-5C00-451C-93A6-382976D641FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90C42172-5C00-451C-93A6-382976D641FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90C42172-5C00-451C-93A6-382976D641FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
