@@ -38,7 +38,7 @@ namespace DataEditorApp.GUI
                 return;
             }
 
-            if (!IsLoginValid(LoginTb.Text))
+            if (!IsLoginAvailable(LoginTb.Text))
             {
                 MessageBox.Show("User with the same login already exists");
                 return;
@@ -65,6 +65,6 @@ namespace DataEditorApp.GUI
 
         protected abstract void SubmitChanges(User? user, string login, string password, DateTime? creationDate);
 
-        protected abstract bool IsLoginValid(string loginTbText);
+        protected abstract bool IsLoginAvailable(string loginTbText);
     }
 }

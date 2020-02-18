@@ -16,6 +16,7 @@ namespace DataEditorApp.GUI
         {
             InitializeComponent();
             Setup();
+            LoginTb.IsAvailable = IsLoginAvailable;
         }
 
         protected override string SubmitButtonText => "Add";
@@ -23,7 +24,7 @@ namespace DataEditorApp.GUI
         protected override Visibility CreationDateEnabled => Visibility.Collapsed;
         protected override bool AllowEmptyPassword => false;
 
-        protected override bool IsLoginValid(string login)
+        protected override bool IsLoginAvailable(string login)
         {
             using var con = new NpgsqlConnection(new UsersConnectionStringBuilder().Build());
             con.Open();

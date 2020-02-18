@@ -29,7 +29,7 @@ namespace DataEditorApp.GUI
         protected override Visibility CreationDateEnabled => Visibility.Visible;
         protected override bool AllowEmptyPassword => true;
 
-        protected override bool IsLoginValid(string login) => true;
+        protected override bool IsLoginAvailable(string login) => true;
 
         protected override void SubmitChanges(User? oldUserData, string login, string password, DateTime? creationDate)
         {
