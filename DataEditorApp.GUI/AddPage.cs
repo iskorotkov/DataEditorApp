@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using DataEditorApp.Registration.Postgres;
 using DataEditorApp.Users;
 using DbAuthApp.Passwords;
 using DbAuthApp.Registration.Postgres;
@@ -41,8 +42,8 @@ namespace DataEditorApp.GUI
             con.Open();
             var salt = _saltGenerator.Next();
             var hashedPassword = _passwordHasher.Hash(password, salt);
-            new AddUserCommand(con, login, hashedPassword, salt).Execute();
-            //AddUserToList(id, login, date);
+            var data = new AddUserReturningValuesCommand(con, login, hashedPassword, salt).Execute();
+            AddUserToList(data.Id, login, data.CreationDate);
         }
 
         private void AddUserToList(int id, string login, DateTime creationDate)
