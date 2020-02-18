@@ -5,6 +5,7 @@
         <Authors>Ivan Korotkov</Authors>
         <RepositoryUrl>https://github.com/iskorotkov/DataEditorApp</RepositoryUrl>
         <Company>Ivan Korotkov</Company>
+        <PackageVersion>1.1.0</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>
