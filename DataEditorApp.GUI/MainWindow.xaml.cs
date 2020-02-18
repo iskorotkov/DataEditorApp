@@ -22,7 +22,7 @@ namespace DataEditorApp.GUI
 
         private void AddUser_Click(object sender, RoutedEventArgs e)
         {
-            ShowWindowWithPage(new AddPage());
+            ShowWindowWithPage(new AddPage(_viewPage.UsersLv));
         }
 
         private static void ShowWindowWithPage(Page page)
@@ -44,7 +44,7 @@ namespace DataEditorApp.GUI
                 return;
             }
 
-            ShowWindowWithPage(new ModifyPage(selectedUsers[0]));
+            ShowWindowWithPage(new ModifyPage(selectedUsers[0], _viewPage.UsersLv));
         }
 
         private void DeleteUsers_OnClick(object sender, RoutedEventArgs e)

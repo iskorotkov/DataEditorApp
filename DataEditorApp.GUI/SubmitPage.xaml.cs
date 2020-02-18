@@ -10,17 +10,20 @@ namespace DataEditorApp.GUI
     /// </summary>
     public abstract partial class SubmitPage : Page
     {
-        protected SubmitPage(User? oldUser)
+        protected ListView UsersList { get; }
+        
+        protected SubmitPage(User? oldUser, ListView usersList)
         {
             InitializeComponent();
             User = oldUser;
+            UsersList = usersList;
         }
 
         protected abstract bool AllowEmptyPassword { get; }
         protected abstract Visibility CreationDateEnabled { get; }
         protected abstract string SubmitButtonText { get; }
         protected abstract string FormTitle { get; }
-        protected User? User { get; private set; }
+        protected User? User { get; set; }
 
         protected void Setup()
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using DataEditorApp.Modification.Postgres;
 using DataEditorApp.Users;
 using DbAuthApp.Passwords;
@@ -9,11 +10,13 @@ namespace DataEditorApp.GUI
 {
     public class ModifyPage : SubmitPage
     {
+        private readonly ListView _usersList;
         private readonly PasswordHasher _passwordHasher = new PasswordHasher();
         private readonly SaltGenerator _saltGenerator = new SaltGenerator();
-        
-        public ModifyPage(User? oldUser) : base(oldUser)
+
+        public ModifyPage(User? oldUser, ListView usersList) : base(oldUser, usersList)
         {
+            _usersList = usersList;
             InitializeComponent();
             Setup();
             LoginTb.IsAvailable = IsLoginAvailable;
@@ -42,21 +45,40 @@ namespace DataEditorApp.GUI
             using var con = new NpgsqlConnection(new UsersConnectionStringBuilder().Build());
             con.Open();
 
-            if (password.Length > 0)
+            if (oldUserData is { } user && creationDate is { } date)
             {
-                // Change password too
-                var salt = _saltGenerator.Next();
-                var hashedPassword = _passwordHasher.Hash(password, salt);
-                // TODO: Too many parameters
-                new ModifyUserWithPasswordCommand(con, oldUserData.Value.Id, login, creationDate.Value, hashedPassword,
-                    salt).Execute();
+                if (password.Length > 0)
+                {
+                    // Change password too
+                    var salt = _saltGenerator.Next();
+                    var hashedPassword = _passwordHasher.Hash(password, salt);
+                    // TODO: Too many parameters
+                    new ModifyUserWithPasswordCommand(con, user.Id, login, date,
+                        hashedPassword,
+                        salt).Execute();
+                }
+                else
+                {
+                    // Password is the same
+                    // TODO: Too many parameters
+                    new ModifyUserCommand(con, oldUserData.Value.Id, login, creationDate.Value).Execute();
+                }
+
+                ModifyUserInList(user, login, date);
             }
-            else
+        }
+
+        private void ModifyUserInList(User oldUser, string newLogin, DateTime newCreationDate)
+        {
+            // TODO: Update users list without creating a new user object
+            var index = _usersList.Items.IndexOf(oldUser);
+            User = new User
             {
-                // Password is the same
-                // TODO: Too many parameters
-                new ModifyUserCommand(con, oldUserData.Value.Id, login, creationDate.Value).Execute();
-            }
+                Id = oldUser.Id,
+                Login = newLogin,
+                CreationDate = newCreationDate
+            };
+            _usersList.Items[index] = User;
         }
 
         protected override string SuccessMessage(string login)

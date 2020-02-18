@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using DataEditorApp.Users;
 using DbAuthApp.Passwords;
 using DbAuthApp.Registration.Postgres;
@@ -9,11 +10,13 @@ namespace DataEditorApp.GUI
 {
     public class AddPage : SubmitPage
     {
+        private readonly ListView _usersList;
         private readonly PasswordHasher _passwordHasher = new PasswordHasher();
         private readonly SaltGenerator _saltGenerator = new SaltGenerator();
 
-        public AddPage() : base(null)
+        public AddPage(ListView usersList) : base(null, usersList)
         {
+            _usersList = usersList;
             InitializeComponent();
             Setup();
             LoginTb.IsAvailable = IsLoginAvailable;
@@ -38,6 +41,18 @@ namespace DataEditorApp.GUI
             var salt = _saltGenerator.Next();
             var hashedPassword = _passwordHasher.Hash(password, salt);
             new AddUserCommand(con, login, hashedPassword, salt).Execute();
+            //AddUserToList(id, login, date);
+        }
+
+        private void AddUserToList(int id, string login, DateTime creationDate)
+        {
+            var user = new User
+            {
+                Id = id,
+                Login = login,
+                CreationDate = creationDate
+            };
+            _usersList.Items.Add(user);
         }
 
         protected override string SuccessMessage(string login)
