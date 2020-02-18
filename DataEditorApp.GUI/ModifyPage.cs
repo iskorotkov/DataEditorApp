@@ -33,7 +33,7 @@ namespace DataEditorApp.GUI
         protected override Visibility CreationDateEnabled => Visibility.Visible;
         protected override bool AllowEmptyPassword => true;
 
-        protected override bool IsLoginAvailable(string login)
+        private bool IsLoginAvailable(string login)
         {
             using var con = new NpgsqlConnection(new UsersConnectionStringBuilder().Build());
             con.Open();
@@ -53,7 +53,6 @@ namespace DataEditorApp.GUI
                     // Change password too
                     var salt = _saltGenerator.Next();
                     var hashedPassword = _passwordHasher.Hash(password, salt);
-                    // TODO: Too many parameters
                     new ModifyUserWithPasswordCommand(con, user.Id, login, date,
                         hashedPassword,
                         salt).Execute();
@@ -61,7 +60,6 @@ namespace DataEditorApp.GUI
                 else
                 {
                     // Password is the same
-                    // TODO: Too many parameters
                     new ModifyUserCommand(con, oldUserData.Value.Id, login, creationDate.Value).Execute();
                 }
 

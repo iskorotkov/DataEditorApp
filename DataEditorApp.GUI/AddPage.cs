@@ -28,7 +28,7 @@ namespace DataEditorApp.GUI
         protected override Visibility CreationDateEnabled => Visibility.Collapsed;
         protected override bool AllowEmptyPassword => false;
 
-        protected override bool IsLoginAvailable(string login)
+        private static bool IsLoginAvailable(string login)
         {
             using var con = new NpgsqlConnection(new UsersConnectionStringBuilder().Build());
             con.Open();
@@ -44,6 +44,7 @@ namespace DataEditorApp.GUI
             var hashedPassword = _passwordHasher.Hash(password, salt);
             var data = new AddUserReturningValuesCommand(con, login, hashedPassword, salt).Execute();
             AddUserToList(data.Id, login, data.CreationDate);
+            LoginTb.ForceIncorrect("The user with this login was created moments ago");
         }
 
         private void AddUserToList(int id, string login, DateTime creationDate)

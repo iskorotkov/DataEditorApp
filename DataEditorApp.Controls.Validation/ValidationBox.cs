@@ -20,6 +20,8 @@ namespace DataEditorApp.Controls.Validation
         public Predicate<string>? IsAvailable { get; set; } = null;
         public void ResetInputBox() => Decorator.Reset();
 
+        public void ForceIncorrect(string message) => Decorator.InputIsIncorrect(message);
+
         public bool AllowEmpty
         {
             get => _allowEmpty;
