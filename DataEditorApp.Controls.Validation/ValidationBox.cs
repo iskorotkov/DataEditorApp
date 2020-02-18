@@ -11,7 +11,12 @@ namespace DataEditorApp.Controls.Validation
 
         public bool IsCorrect => Decorator.IsCorrect || AllowEmpty && Text.Length == 0;
         public abstract string Text { get; set; }
-        public TextBoxDecorator.OnIsCorrectChangedDelegate OnIsCorrectChanged => Decorator.OnIsCorrectChanged;
+        public TextBoxDecorator.OnIsCorrectChangedDelegate IsCorrectChanged
+        {
+            get => Decorator.OnIsCorrectChanged;
+            set => Decorator.OnIsCorrectChanged = value;
+        }
+
         public Predicate<string>? IsAvailable { get; set; } = null;
         public void ResetInputBox() => Decorator.Reset();
 

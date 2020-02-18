@@ -10,13 +10,15 @@ namespace DataEditorApp.GUI
     /// </summary>
     public abstract partial class SubmitPage : Page
     {
-        protected ListView UsersList { get; }
-        
-        protected SubmitPage(User? oldUser, ListView usersList)
+        protected SubmitPage(User? oldUser)
         {
             InitializeComponent();
             User = oldUser;
-            UsersList = usersList;
+
+            ChangeButtonState();
+            LoginTb.IsCorrectChanged += ChangeButtonState;
+            PasswordPb.IsCorrectChanged += ChangeButtonState;
+
         }
 
         protected abstract bool AllowEmptyPassword { get; }
@@ -24,6 +26,11 @@ namespace DataEditorApp.GUI
         protected abstract string SubmitButtonText { get; }
         protected abstract string FormTitle { get; }
         protected User? User { get; set; }
+
+        private void ChangeButtonState()
+        {
+            SubmitButton.IsEnabled = LoginTb.IsCorrect && PasswordPb.IsCorrect;
+        }
 
         protected void Setup()
         {
@@ -66,7 +73,8 @@ namespace DataEditorApp.GUI
 
         protected abstract string SuccessMessage(string login);
 
-        protected abstract void SubmitChanges(User? user, string login, string password, DateTime? creationDate);
+        protected abstract void SubmitChanges(User? user, string login, string password,
+            DateTime? creationDate);
 
         protected abstract bool IsLoginAvailable(string loginTbText);
     }

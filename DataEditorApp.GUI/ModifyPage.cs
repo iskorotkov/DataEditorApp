@@ -14,7 +14,7 @@ namespace DataEditorApp.GUI
         private readonly PasswordHasher _passwordHasher = new PasswordHasher();
         private readonly SaltGenerator _saltGenerator = new SaltGenerator();
 
-        public ModifyPage(User? oldUser, ListView usersList) : base(oldUser, usersList)
+        public ModifyPage(User? oldUser, ListView usersList) : base(oldUser)
         {
             _usersList = usersList;
             InitializeComponent();
@@ -40,7 +40,8 @@ namespace DataEditorApp.GUI
             return new CanChangeLoginCommand(con, login, User.Value.Id).Execute();
         }
 
-        protected override void SubmitChanges(User? oldUserData, string login, string password, DateTime? creationDate)
+        protected override void SubmitChanges(User? oldUserData, string login, string password,
+            DateTime? creationDate)
         {
             using var con = new NpgsqlConnection(new UsersConnectionStringBuilder().Build());
             con.Open();
