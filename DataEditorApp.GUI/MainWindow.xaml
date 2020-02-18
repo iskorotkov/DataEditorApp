@@ -19,8 +19,8 @@
         <Menu x:Name="menu" Margin="0,0,0,0">
             <MenuItem x:Name="EditMenu" Header="Edit">
                 <MenuItem x:Name="AddUser" Header="Add" Click="AddUser_Click"/>
-                <MenuItem x:Name="ModifyUser" Header="Modify" Click="ModifyUser_OnClick"/>
-                <MenuItem x:Name="DeleteUsers" Header="Delete" Click="DeleteUsers_OnClick"/>
+                <MenuItem x:Name="ModifyUser" IsEnabled="False" Header="Modify" Click="ModifyUser_OnClick"/>
+                <MenuItem x:Name="DeleteUsers" IsEnabled="False" Header="Delete" Click="DeleteUsers_OnClick"/>
             </MenuItem>
         </Menu>
         <Frame x:Name="MainFrame" Content="" NavigationUIVisibility="Hidden" Margin="0,0,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.Row="1"/>

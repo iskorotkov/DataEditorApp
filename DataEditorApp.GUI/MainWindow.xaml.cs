@@ -18,6 +18,14 @@ namespace DataEditorApp.GUI
             InitializeComponent();
             _viewPage = new ViewPage();
             MainFrame.Content = _viewPage;
+            _viewPage.UsersLv.SelectionChanged += UsersSelectionChanged;
+        }
+
+        private void UsersSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selected = _viewPage.GetSelectedUsers().Count();
+            ModifyUser.IsEnabled = selected == 1;
+            DeleteUsers.IsEnabled = selected >= 1;
         }
 
         private void AddUser_Click(object sender, RoutedEventArgs e)
