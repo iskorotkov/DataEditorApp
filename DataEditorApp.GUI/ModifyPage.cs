@@ -69,7 +69,6 @@ namespace DataEditorApp.GUI
 
         private void ModifyUserInList(User oldUser, string newLogin, DateTime newCreationDate)
         {
-            // TODO: Update users list without creating a new user object
             var index = _usersList.Items.IndexOf(oldUser);
             User = new User
             {

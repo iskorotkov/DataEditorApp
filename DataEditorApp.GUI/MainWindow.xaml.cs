@@ -48,7 +48,6 @@ namespace DataEditorApp.GUI
             var selectedUsers = _viewPage.GetSelectedUsers().ToList();
             if (selectedUsers.Count != 1)
             {
-                // TODO: Handle selection of multiple users
                 return;
             }
 
@@ -60,7 +59,6 @@ namespace DataEditorApp.GUI
             var selectedUsers = _viewPage.GetSelectedUsers().ToList();
             if (selectedUsers.Count == 0)
             {
-                // TODO: Handle case when no users were selected for deletion
                 return;
             }
 
